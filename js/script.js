@@ -6,24 +6,24 @@ setInterval(function(){
     }
     
 },1000) */
-let SECONDS_GAME = 1000;
+let SECONDS_GAME = 4000;
+/* Vettore dei numeri casuali di Simon */
+
+/* Vettore dei numeri inseriti dall'utente */
+let userNum = [];
+let simonNumbers = [];
 
 function randomNumberSimon() {
-    /* Vettore dei numeri casuali di Simon */
-    let simonNumbers = [];
-
     /* Inizializzazione del tag ul */
     let numList = document.getElementById('num-list');
-    let li = document.createElement('li');
-
+    
+    
     /* Generazione dei 5 numeri */
-    for (let i = 0; i <= 5; i++) {
-
+    for (let i = 0; i < 5; i++) {
         let li = document.createElement('li');
         let randomNumber = Math.floor(Math.random() * 100) + 1;
         /* Aggiunta dei numeri in un vettore */
         simonNumbers.push(randomNumber);
-
         /* Stampa dei numeri in index */
         li.innerText = simonNumbers[i];
         numList.appendChild(li);
@@ -32,22 +32,34 @@ function randomNumberSimon() {
     /* Dopo 30 secondi viene tolto tutto dalla lista */
     setTimeout(function () {
         numList.innerText = '';
-    }, SECONDS_GAME);
+    }, SECONDS_GAME - 1000);
 
-    return simonNumbers;
 }
 
-setTimeout(function () {
-    /* Vettore per i numeri inseriti dall'utente */
-    let userNum = [];
-
+setTimeout(function userInput() {
     /* Chiediamo all'utente di indovinare i numeri */
     for (let i = 1; i <= 5; i++) {
         let number = prompt(`Inserisci il ${i}° numero`);
         userNum.push(number);
     }
-
-    return userNum;
+    
+    
+    numberChecker(simonNumbers, userNum)
+    function numberChecker(firstArr, secondArr){
+        let points = 0;
+        console.log(firstArr);
+        console.log(secondArr);
+        for(let i = 0; i<5; i++){
+            if(firstArr.includes(parseInt(secondArr[i]))){
+                points++
+            }
+        }
+        console.log(points);
+    } 
 }, SECONDS_GAME)
 
 randomNumberSimon();
+
+
+
+
