@@ -7,16 +7,15 @@ setInterval(function(){
     
 },1000) */
 let SECONDS_GAME = 4000;
-/* Vettore dei numeri casuali di Simon */
 
 /* Vettore dei numeri inseriti dall'utente */
 let userNum = [];
+/* Vettore dei numeri casuali di Simon */
 let simonNumbers = [];
 
 function randomNumberSimon() {
     /* Inizializzazione del tag ul */
     let numList = document.getElementById('num-list');
-    
     
     /* Generazione dei 5 numeri */
     for (let i = 0; i < 5; i++) {
@@ -47,14 +46,15 @@ setTimeout(function userInput() {
     numberChecker(simonNumbers, userNum)
     function numberChecker(firstArr, secondArr){
         let points = 0;
-        console.log(firstArr);
-        console.log(secondArr);
+        console.log('--------NUMERI GIUSTI--------');
         for(let i = 0; i<5; i++){
             if(firstArr.includes(parseInt(secondArr[i]))){
+                console.log(secondArr[i]);
                 points++
             }
         }
-        console.log(points);
+        console.log('------------------------------');
+        console.log('Punti: ' + points);
     } 
 }, SECONDS_GAME)
 
