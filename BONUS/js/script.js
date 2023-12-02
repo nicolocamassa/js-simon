@@ -6,7 +6,7 @@ setInterval(function(){
     }
     
 },1000) */
-let SECONDS_GAME = 5000;
+let SECONDS_GAME = 10000;
 
 /* Vettore dei numeri inseriti dall'utente */
 let userNum = [];
@@ -19,14 +19,15 @@ function randomNumberSimon() {
     
     /* Generazione dei 5 numeri */
     for (let i = 0; i < 5; i++) {
-        let li = document.createElement('li');
-        li.classList.add('mx-2');
+        setTimeout(function(){
+        let number = document.getElementById('number');
         let randomNumber = Math.floor(Math.random() * 100) + 1;
+        
         /* Aggiunta dei numeri in un vettore */
         simonNumbers.push(randomNumber);
-        /* Stampa dei numeri in index */
-        li.innerText = simonNumbers[i];
-        numList.appendChild(li);
+            /* Stampa dei numeri in index */
+            number.innerText = simonNumbers[i];
+        }, (i * SECONDS_GAME) / 5)
     }
 
     /* Dopo 30 secondi viene tolto tutto dalla lista */
